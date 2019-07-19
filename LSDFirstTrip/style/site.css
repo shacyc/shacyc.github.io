@@ -93,6 +93,10 @@
   background-image: url(../img/wave.jpg);
 }
 
+.forest {
+  background-image: url(../img/forest.png);
+}
+
 /* scroll bar */
 .main::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
