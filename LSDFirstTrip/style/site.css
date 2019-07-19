@@ -13,6 +13,26 @@
   src: url(fonts/Pepper-Hands.ttf);
 }
 
+a {
+  color: #84e2ff;
+  text-decoration: none;
+}
+
+li {
+  margin-bottom: 8px;
+}
+li:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  color: #88b04b;
+}
+
+h4 {
+  color: #d94f70;
+}
+
 .main {
   background-color: #1e1e1e;
   color: rgba(255, 255, 255, 0.87);
@@ -95,6 +115,13 @@
 
 .forest {
   background-image: url(../img/forest.png);
+}
+
+.quote {
+  border: solid 1px #666;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
 }
 
 /* scroll bar */
