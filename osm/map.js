@@ -117,6 +117,7 @@ function drawPatient(patient, f0date) {
 function drawCluster(ftype) {
     var cluster = new L.MarkerClusterGroup({
         showCoverageOnHover: false,
+        animate: false,
         iconCreateFunction: function(cl) {
             return new L.DivIcon({ html: `<div class="cluster ${ftype}"><div>${cl.getChildCount()}</div></div>` });
         }
