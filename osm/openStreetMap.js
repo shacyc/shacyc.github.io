@@ -85,7 +85,7 @@ function initMap() {
     // init map
     map = L.map('map', {
         attributionControl: false,
-        minZoom: 15
+        // minZoom: 15
     }).setView(center, zoom);
 
     // add tile để map có thể hoạt động, xài free từ OSM
