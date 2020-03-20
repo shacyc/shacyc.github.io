@@ -100,7 +100,8 @@ function initMap() {
     //     drawPatient(patient);
     // });
 
-    var map = L.map('map').fitWorld();
+    var center = { lat: 21.0012406, lng: 105.7938073 }
+    var map = L.map('map').setView(center, 12);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -112,23 +113,39 @@ function initMap() {
         zoomOffset: -1
     }).addTo(map);
 
-    function onLocationFound(e) {
-        var radius = e.accuracy / 2;
+    // function onLocationFound(e) {
+    //     var radius = e.accuracy / 2;
 
-        L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    //     L.marker(e.latlng).addTo(map)
+    //         .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    //     console.log(e.latlng);
 
-        L.circle(e.latlng, radius).addTo(map);
-    }
+    //     L.circle(e.latlng, radius).addTo(map);
+    // }
 
-    function onLocationError(e) {
-        alert(e.message);
-    }
 
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
 
-    map.locate({ setView: true, maxZoom: 16 });
+
+    // var radius = e.accuracy / 2;
+
+    // L.marker(center).addTo(map)
+    //     // .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    // // L.circle(center, radius).addTo(map);
+
+
+
+    // // function onLocationError(e) {
+    // //     alert(e.message);
+    // // }
+
+    // // map.on('locationfound', onLocationFound);
+    // // map.on('locationerror', onLocationError);
+
+    // map.locate({
+    //     setView: true,
+    //     maxZoom: 16
+    // });
 
 }
 
