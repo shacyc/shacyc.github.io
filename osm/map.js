@@ -40,7 +40,7 @@ var clusterMarker = {
  * vẽ các bệnh nhân ra
  * @param {*} patient 
  */
-function drawPatient(patient) {
+function drawPatient(patient, f0date) {
     try {
         /** check dữ liệu */
         if (!patient.LocationLat || patient.LocationLat === '' || patient.LocationLat.toString() === '0' ||
@@ -51,13 +51,12 @@ function drawPatient(patient) {
 
         /** tính loại f */
         patient.ftype = `f${patient.Status - 1}`;
-        // if (patient.IsolateDate && patient.IsolateDate.length > 0) {
-        //     var d = new Date(patient.IsolateDate.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
-        //     if (f0date.indexOf(`${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`) > -1) {
-        //         patient.ftype = 'f0new';
-        //     }
-        // }
-
+        if (patient.IsolateDate && patient.IsolateDate.length > 0) {
+            var d = new Date(patient.IsolateDate.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+            if (f0date.indexOf(`${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`) > -1) {
+                patient.ftype = 'f0new';
+            }
+        }
 
         /** vẽ marker bệnh nhân */
         var patientLocation = {
@@ -78,7 +77,7 @@ function drawPatient(patient) {
                 <div>
                     <b>Lộ trình</b>
                 </div>
-                <div>
+                <div class="f0-visit-description">
                     ${patient.Visits ? patient.Visits: ''}
                 </div>`;
 
@@ -120,8 +119,7 @@ function drawCluster(ftype) {
         showCoverageOnHover: false,
         iconCreateFunction: function(cl) {
             return new L.DivIcon({ html: `<div class="cluster ${ftype}"><div>${cl.getChildCount()}</div></div>` });
-        },
-        maxClusterRadius: 50
+        }
     });
 
     clusterMarker[ftype].forEach(m => {
@@ -129,6 +127,51 @@ function drawCluster(ftype) {
     });
 
     map.addLayer(cluster);
+}
+
+/**
+ * bắt đầu xử lý map
+ */
+function processMap() {
+
+    /** get dữ liệu */
+    var data = [];
+    $.ajax({
+        type: "GET",
+        url: '/Home/CovidPatient',
+        dataType: "json",
+        async: false,
+        success: function(response) {
+            data = response.Data;
+        },
+        error: function() {
+            console.log('Không lấy được dữ liệu từ Api.');
+            if (window.location.origin === 'file://') data = jsData.Data;
+        }
+    });
+
+    /** tính toán ngày hqua và hnay để hiển thị f0 new */
+    var f0date = [];
+    var today = new Date();
+    f0date.push(`${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`);
+    today.setDate(today.getDate() - 1);
+    f0date.push(`${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`);
+
+    data.forEach(patient => {
+        /** vẽ các f */
+        drawPatient(patient, f0date);
+    });
+
+    /** gom vào cluster */
+    drawCluster('f345');
+    drawCluster('f2');
+    drawCluster('f1');
+    clusterMarker.f0.forEach(m => {
+        m.addTo(map);
+    });
+
+
+
 }
 
 var map = null;
@@ -172,18 +215,8 @@ function initMap() {
         L.marker(userLocation, { icon: Icons.userLocation }).addTo(map);
     }
 
-    jsData.Data.forEach(patient => {
-        /** vẽ các f */
-        drawPatient(patient);
-    });
-
-    /** gom vào cluster */
-    drawCluster('f345');
-    drawCluster('f2');
-    drawCluster('f1');
-    clusterMarker.f0.forEach(m => {
-        m.addTo(map);
-    });
+    /** bắt đầu đổ dữ liệu vào map */
+    processMap();
 }
 
 window.onload = function() {
