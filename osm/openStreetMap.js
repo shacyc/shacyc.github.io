@@ -65,7 +65,7 @@ var map = null;
 function initMap() {
 
     var center = [21.0012406, 105.7938073]; // vị trí mặc định hiển thị bản đồ
-    var zoom = 15; // mặc định zoom
+    var zoom = 20; // mặc định zoom
     var userLocation = null;
 
     /** lấy location user từ trên url */
@@ -85,7 +85,7 @@ function initMap() {
     // init map
     map = L.map('map', {
         attributionControl: false,
-        minZoom: 12
+        minZoom: 15
     }).setView(center, zoom);
 
     // add tile để map có thể hoạt động, xài free từ OSM
