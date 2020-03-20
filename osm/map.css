@@ -1,0 +1,25 @@
+.cluster {
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 50%;
+    margin-left: -6px;
+    margin-top: -6px;
+}
+
+.cluster.f1 {
+    background-color: #ffb300;
+    border-color: #ffb300;
+}
+
+.cluster.f2 {
+    background-color: #fff27c;
+    border-color: #fff27c;
+}
+
+.cluster.f345 {
+    background-color: #75deff;
+    border-color: #75deff;
+}

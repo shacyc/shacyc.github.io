@@ -1,13 +1,15 @@
+var iconAnchor = [14, 16];
+var userIconAnchor = [8, 30];
 var Icons = {
-    f0new: L.icon({ iconUrl: 'images/f0new.gif' }),
-    f0: L.icon({ iconUrl: 'images/f0.svg' }),
-    f1: L.icon({ iconUrl: 'images/f1.svg' }),
-    f2: L.icon({ iconUrl: 'images/f2.svg' }),
-    f3: L.icon({ iconUrl: 'images/f3.svg' }),
-    f4: L.icon({ iconUrl: 'images/f45.svg' }),
-    f5: L.icon({ iconUrl: 'images/f45.svg' }),
-    f0dest: L.icon({ iconUrl: 'images/f0dest.svg' }),
-    userLocation: L.icon({ iconUrl: 'images/userLocation.svg' }),
+    f0new: L.icon({ iconUrl: 'images/f0new.gif', iconAnchor: iconAnchor }),
+    f0: L.icon({ iconUrl: 'images/f0.svg', iconAnchor: iconAnchor }),
+    f1: L.icon({ iconUrl: 'images/f1.svg', iconAnchor: iconAnchor }),
+    f2: L.icon({ iconUrl: 'images/f2.svg', iconAnchor: iconAnchor }),
+    f3: L.icon({ iconUrl: 'images/f3.svg', iconAnchor: iconAnchor }),
+    f4: L.icon({ iconUrl: 'images/f45.svg', iconAnchor: iconAnchor }),
+    f5: L.icon({ iconUrl: 'images/f45.svg', iconAnchor: iconAnchor }),
+    f0dest: L.icon({ iconUrl: 'images/f0dest.svg', iconAnchor: iconAnchor }),
+    userLocation: L.icon({ iconUrl: 'images/f0.svg', iconAnchor: userIconAnchor }),
 }
 
 var MarkerZIndex = {
@@ -21,34 +23,44 @@ var MarkerZIndex = {
     f0dest: 0
 }
 
+var clusterSettings = {
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: true,
+    zoomToBoundsOnClick: true
+}
+
 var clusters = {
     f1: L.markerClusterGroup({
+        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
+        showCoverageOnHover: clusterSettings.showCoverageOnHover,
+        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
         iconCreateFunction: function(cluster) {
             return L.divIcon({ html: '<div class="cluster f1"><b>' + cluster.getChildCount() + '</b></div>' });
         }
     }),
     f2: L.markerClusterGroup({
+        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
+        showCoverageOnHover: clusterSettings.showCoverageOnHover,
+        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
         iconCreateFunction: function(cluster) {
             return L.divIcon({ html: '<div class="cluster f1"><b>' + cluster.getChildCount() + '</b></div>' });
         }
     }),
     f345: L.markerClusterGroup({
+        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
+        showCoverageOnHover: clusterSettings.showCoverageOnHover,
+        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
         iconCreateFunction: function(cluster) {
             return L.divIcon({ html: '<div class="cluster f345"><b>' + cluster.getChildCount() + '</b></div>' });
         }
     }),
 }
 
-var f0Icon = L.icon({
-    iconUrl: 'images/f0.svg',
-    // shadowUrl: 'leaf-shadow.png',
-
-    // iconSize: [38, 95], // size of the icon
-    // shadowSize: [50, 64], // size of the shadow
-    // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-    // shadowAnchor: [4, 62], // the same for the shadow
-    // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
+var clusterMarker = {
+    f1: [],
+    f2: [],
+    f345: []
+}
 
 /**
  * vẽ các bệnh nhân ra
@@ -78,13 +90,13 @@ function drawPatient(patient) {
             lat: parseFloat(patient.LocationLat),
             lng: parseFloat(patient.LocationLng)
         }
-        var marker = L.marker(patientLocation, { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] }).addTo(map);
+        var marker = L.marker(patientLocation, { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] });
 
         /** hiển thị popup thông tin chi tiết */
         marker.on('click', function() {
             popupContent =
                 `<div>
-                    <b>Trường hợp:</b> ${patient.Title}
+                    <b>Trường hợp:</b> ${patient.ftype} ${patient.Title}
                 </div>
                 <div>
                     <b>Địa chỉ:</b> ${patient.Address}
@@ -105,21 +117,68 @@ function drawPatient(patient) {
         /** add vào cluster */
         switch (patient.ftype) {
             case 'f1':
-                clusters.f1.addLayer(marker);
+                // clusters.f1.addLayer(marker);
+                clusterMarker.f1.push(marker);
                 break;
             case 'f2':
-                clusters.f2.addLayer(marker);
+                // clusters.f2.addLayer(marker);
+                clusterMarker.f2.push(marker);
                 break;
             case 'f3':
             case 'f4':
             case 'f5':
-                clusters.f345.addLayer(marker);
+                // clusters.f345.addLayer(marker);
+                clusterMarker.f345.push(marker);
                 break;
         }
 
     } catch (error) {
         console.log(error);
     }
+}
+
+/**
+ * draw cluster
+ */
+function drawCluster() {
+    /** f1 cluster */
+    var f1cluster = new L.MarkerClusterGroup({
+        showCoverageOnHover: false,
+        iconCreateFunction: function(cl) {
+            return new L.DivIcon({ html: `<div class="cluster f1">${cl.getChildCount()}</div>` });
+        },
+        maxClusterRadius: 50
+    });
+    for (var i = 0; i < clusterMarker.f1.length; i++) {
+        f1cluster.addLayer(clusterMarker.f1[i]);
+    }
+    map.addLayer(f1cluster);
+
+    /** f2 cluster */
+    var f2cluster = new L.MarkerClusterGroup({
+        showCoverageOnHover: false,
+        iconCreateFunction: function(cl) {
+            return new L.DivIcon({ html: `<div class="cluster f2">${cl.getChildCount()}</div>` });
+        },
+        maxClusterRadius: 50
+    });
+    for (var i = 0; i < clusterMarker.f2.length; i++) {
+        f2cluster.addLayer(clusterMarker.f2[i]);
+    }
+    map.addLayer(f2cluster);
+
+    /** f3 cluster */
+    var f345cluster = new L.MarkerClusterGroup({
+        showCoverageOnHover: false,
+        iconCreateFunction: function(cl) {
+            return new L.DivIcon({ html: `<div class="cluster f345">${cl.getChildCount()}</div>` });
+        },
+        maxClusterRadius: 50
+    });
+    for (var i = 0; i < clusterMarker.f345.length; i++) {
+        f345cluster.addLayer(clusterMarker.f345[i]);
+    }
+    map.addLayer(f345cluster);
 }
 
 var map = null;
@@ -136,8 +195,8 @@ function initMap() {
         var url = new URL(window.location.href);
         var lat = url.searchParams.get("lat");
         var lng = url.searchParams.get("lon");
-        // var lat = 20.9987425;
-        // var lng = 105.7935203;
+        lat = 21.027794;
+        lng = 105.852263;
         if (lat && lng) {
             userLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
             zoom = 15;
@@ -146,7 +205,7 @@ function initMap() {
         console.log("Lấy location của user bị lỗi.")
     }
 
-    map = L.map('map').setView(center, zoom);
+    map = L.map('map').setView(userLocation ? userLocation : center, zoom);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -168,10 +227,8 @@ function initMap() {
         drawPatient(patient);
     });
 
-    /** add cluster */
-    map.addLayer(clusters.f1);
-    map.addLayer(clusters.f2);
-    map.addLayer(clusters.f345);
+    /** gom vào cluster */
+    drawCluster();
 
 }
 
