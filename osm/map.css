@@ -10,6 +10,35 @@ body {
     width: 100vw;
 }
 
+.description {
+    margin-block-start: 4px !important;
+    margin-block-end: 4px !important;
+    padding-right: 8px !important;
+    padding-left: 0 !important;
+    list-style-type: none;
+}
+
+.point-description {
+    display: flex;
+    align-items: center;
+}
+
+.point-description img {
+    width: 24px;
+    height: 24px;
+}
+
+.point-description img.gif {
+    width: 17px;
+    height: 17px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.description li {
+    margin-bottom: 4px;
+}
+
 .cluster {
     width: 28px;
     height: 28px;
@@ -56,4 +85,5 @@ body {
 
 .f0-visit-description {
     max-height: 200px;
+    overflow: auto;
 }
