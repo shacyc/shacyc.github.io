@@ -119,7 +119,7 @@ function drawCluster(ftype) {
     var cluster = new L.MarkerClusterGroup({
         showCoverageOnHover: false,
         iconCreateFunction: function(cl) {
-            return new L.DivIcon({ html: `<div class="cluster ${ftype}">${cl.getChildCount()}</div>` });
+            return new L.DivIcon({ html: `<div class="cluster ${ftype}"><div>${cl.getChildCount()}</div></div>` });
         },
         maxClusterRadius: 50
     });

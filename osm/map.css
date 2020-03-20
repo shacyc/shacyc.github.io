@@ -1,6 +1,6 @@
 .cluster {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -9,17 +9,35 @@
     margin-top: -6px;
 }
 
+.cluster div {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .cluster.f1 {
-    background-color: #ffb300;
-    border-color: #ffb300;
+    background-color: rgba(255, 179, 0, .5);
+}
+
+.cluster.f1 div {
+    background-color: rgb(255, 179, 0);
 }
 
 .cluster.f2 {
-    background-color: #fff27c;
-    border-color: #fff27c;
+    background-color: rgba(255, 242, 124, .5);
+}
+
+.cluster.f2 div {
+    background-color: rgb(255, 242, 124);
 }
 
 .cluster.f345 {
-    background-color: #75deff;
-    border-color: #75deff;
+    background-color: rgb(117, 222, 255, .5);
+}
+
+.cluster.f345 div {
+    background-color: rgb(117, 222, 255);
 }
