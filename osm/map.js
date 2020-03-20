@@ -284,8 +284,8 @@ function initMap() {
     var url = new URL(window.location.href);
     var lat = url.searchParams.get("lat");
     var lng = url.searchParams.get("lon");
-    lat = 21.027794;
-    lng = 105.852263;
+    // lat = 21.027794;
+    // lng = 105.852263;
     if (lat && lng) {
       userLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
       zoom = 15;
