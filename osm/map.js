@@ -5,15 +5,17 @@ var lines = [];
 /** Icons */
 var iconAnchor = [14, 16];
 var userIconAnchor = [8, 30];
+var iconSize =  [28, 28];
+var newCaseIconSize =  [20, 20];
 var Icons = {
-  f0new: L.icon({ iconUrl: "images/f0new.gif", iconAnchor: iconAnchor }),
-  f0: L.icon({ iconUrl: "images/f0.svg", iconAnchor: iconAnchor }),
-  f1: L.icon({ iconUrl: "images/f1.svg", iconAnchor: iconAnchor }),
-  f2: L.icon({ iconUrl: "images/f2.svg", iconAnchor: iconAnchor }),
-  f3: L.icon({ iconUrl: "images/f3.svg", iconAnchor: iconAnchor }),
-  f4: L.icon({ iconUrl: "images/f45.svg", iconAnchor: iconAnchor }),
-  f5: L.icon({ iconUrl: "images/f45.svg", iconAnchor: iconAnchor }),
-  f0dest: L.icon({ iconUrl: "images/f0dest.svg", iconAnchor: iconAnchor }),
+  f0new: L.icon({ iconUrl: "images/f0new.gif", iconAnchor: iconAnchor, iconSize: newCaseIconSize }),
+  f0: L.icon({ iconUrl: "images/f0.svg", iconAnchor: iconAnchor,iconSize: iconSize  }),
+  f1: L.icon({ iconUrl: "images/f1.svg", iconAnchor: iconAnchor,iconSize: iconSize  }),
+  f2: L.icon({ iconUrl: "images/f2.svg", iconAnchor: iconAnchor,iconSize: iconSize  }),
+  f3: L.icon({ iconUrl: "images/f3.svg", iconAnchor: iconAnchor,iconSize: iconSize  }),
+  f4: L.icon({ iconUrl: "images/f45.svg", iconAnchor: iconAnchor,iconSize: iconSize  }),
+  f5: L.icon({ iconUrl: "images/f45.svg", iconAnchor: iconAnchor,iconSize: iconSize }),
+  f0dest: L.icon({ iconUrl: "images/f0dest.svg", iconAnchor: iconAnchor,iconSize: iconSize }),
   userLocation: L.icon({
     iconUrl: "images/userLocation.svg",
     iconAnchor: userIconAnchor
