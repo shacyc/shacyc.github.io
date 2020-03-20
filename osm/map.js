@@ -136,19 +136,24 @@ function processMap() {
 
     /** get dữ liệu */
     var data = [];
-    $.ajax({
-        type: "GET",
-        url: '/Home/CovidPatient',
-        dataType: "json",
-        async: false,
-        success: function(response) {
-            data = response.Data;
-        },
-        error: function() {
-            console.log('Không lấy được dữ liệu từ Api.');
-            if (window.location.origin === 'file://') data = jsData.Data;
-        }
-    });
+    try {
+        $.ajax({
+            type: "GET",
+            url: '/Home/CovidPatient',
+            dataType: "json",
+            async: false,
+            success: function(response) {
+                data = response.Data;
+            },
+            error: function() {
+                console.log('Không lấy được dữ liệu từ Api.');
+                if (window.location.origin === 'file://') data = jsData.Data;
+            }
+        });
+    } catch (error) {
+        data = jsData.Data;
+    }
+
 
     /** tính toán ngày hqua và hnay để hiển thị f0 new */
     var f0date = [];
