@@ -9,7 +9,7 @@ var Icons = {
     f4: L.icon({ iconUrl: 'images/f45.svg', iconAnchor: iconAnchor }),
     f5: L.icon({ iconUrl: 'images/f45.svg', iconAnchor: iconAnchor }),
     f0dest: L.icon({ iconUrl: 'images/f0dest.svg', iconAnchor: iconAnchor }),
-    userLocation: L.icon({ iconUrl: 'images/f0.svg', iconAnchor: userIconAnchor }),
+    userLocation: L.icon({ iconUrl: 'images/userLocation.svg', iconAnchor: userIconAnchor }),
 }
 
 var MarkerZIndex = {
@@ -29,34 +29,8 @@ var clusterSettings = {
     zoomToBoundsOnClick: true
 }
 
-var clusters = {
-    f1: L.markerClusterGroup({
-        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
-        showCoverageOnHover: clusterSettings.showCoverageOnHover,
-        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
-        iconCreateFunction: function(cluster) {
-            return L.divIcon({ html: '<div class="cluster f1"><b>' + cluster.getChildCount() + '</b></div>' });
-        }
-    }),
-    f2: L.markerClusterGroup({
-        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
-        showCoverageOnHover: clusterSettings.showCoverageOnHover,
-        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
-        iconCreateFunction: function(cluster) {
-            return L.divIcon({ html: '<div class="cluster f1"><b>' + cluster.getChildCount() + '</b></div>' });
-        }
-    }),
-    f345: L.markerClusterGroup({
-        spiderfyOnMaxZoom: clusterSettings.spiderfyOnMaxZoom,
-        showCoverageOnHover: clusterSettings.showCoverageOnHover,
-        zoomToBoundsOnClick: clusterSettings.zoomToBoundsOnClick,
-        iconCreateFunction: function(cluster) {
-            return L.divIcon({ html: '<div class="cluster f345"><b>' + cluster.getChildCount() + '</b></div>' });
-        }
-    }),
-}
-
 var clusterMarker = {
+    f0: [],
     f1: [],
     f2: [],
     f345: []
@@ -116,18 +90,19 @@ function drawPatient(patient) {
 
         /** add vào cluster */
         switch (patient.ftype) {
+            case 'f0':
+            case 'f0new':
+                clusterMarker.f0.push(marker);
+                break;
             case 'f1':
-                // clusters.f1.addLayer(marker);
                 clusterMarker.f1.push(marker);
                 break;
             case 'f2':
-                // clusters.f2.addLayer(marker);
                 clusterMarker.f2.push(marker);
                 break;
             case 'f3':
             case 'f4':
             case 'f5':
-                // clusters.f345.addLayer(marker);
                 clusterMarker.f345.push(marker);
                 break;
         }
@@ -140,45 +115,20 @@ function drawPatient(patient) {
 /**
  * draw cluster
  */
-function drawCluster() {
-    /** f1 cluster */
-    var f1cluster = new L.MarkerClusterGroup({
+function drawCluster(ftype) {
+    var cluster = new L.MarkerClusterGroup({
         showCoverageOnHover: false,
         iconCreateFunction: function(cl) {
-            return new L.DivIcon({ html: `<div class="cluster f1">${cl.getChildCount()}</div>` });
+            return new L.DivIcon({ html: `<div class="cluster ${ftype}">${cl.getChildCount()}</div>` });
         },
         maxClusterRadius: 50
     });
-    for (var i = 0; i < clusterMarker.f1.length; i++) {
-        f1cluster.addLayer(clusterMarker.f1[i]);
-    }
-    map.addLayer(f1cluster);
 
-    /** f2 cluster */
-    var f2cluster = new L.MarkerClusterGroup({
-        showCoverageOnHover: false,
-        iconCreateFunction: function(cl) {
-            return new L.DivIcon({ html: `<div class="cluster f2">${cl.getChildCount()}</div>` });
-        },
-        maxClusterRadius: 50
+    clusterMarker[ftype].forEach(m => {
+        cluster.addLayer(m);
     });
-    for (var i = 0; i < clusterMarker.f2.length; i++) {
-        f2cluster.addLayer(clusterMarker.f2[i]);
-    }
-    map.addLayer(f2cluster);
 
-    /** f3 cluster */
-    var f345cluster = new L.MarkerClusterGroup({
-        showCoverageOnHover: false,
-        iconCreateFunction: function(cl) {
-            return new L.DivIcon({ html: `<div class="cluster f345">${cl.getChildCount()}</div>` });
-        },
-        maxClusterRadius: 50
-    });
-    for (var i = 0; i < clusterMarker.f345.length; i++) {
-        f345cluster.addLayer(clusterMarker.f345[i]);
-    }
-    map.addLayer(f345cluster);
+    map.addLayer(cluster);
 }
 
 var map = null;
@@ -228,8 +178,12 @@ function initMap() {
     });
 
     /** gom vào cluster */
-    drawCluster();
-
+    drawCluster('f345');
+    drawCluster('f2');
+    drawCluster('f1');
+    clusterMarker.f0.forEach(m => {
+        m.addTo(map);
+    });
 }
 
 window.onload = function() {
