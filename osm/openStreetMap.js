@@ -7,6 +7,7 @@ var Icons = {
     f4: L.icon({ iconUrl: 'images/f45.svg' }),
     f5: L.icon({ iconUrl: 'images/f45.svg' }),
     f0dest: L.icon({ iconUrl: 'images/f0dest.svg' }),
+    userLocation: L.icon({ iconUrl: 'images/userLocation.svg' }),
 }
 
 var MarkerZIndex = {
@@ -53,7 +54,12 @@ function drawPatient(patient) {
         //     }
         // }
 
-        L.marker([parseFloat(patient.LocationLat), parseFloat(patient.LocationLng)], { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] }).addTo(map);
+
+        var patientLocation = {
+            lat: parseFloat(patient.LocationLat),
+            lng: parseFloat(patient.LocationLng)
+        }
+        L.marker(patientLocation, { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] }).addTo(map);
 
     } catch (error) {
         console.log(error);
@@ -64,44 +70,26 @@ var map = null;
 
 function initMap() {
 
-    // var center = [21.0012406, 105.7938073]; // vị trí mặc định hiển thị bản đồ
-    // var zoom = 20; // mặc định zoom
-    // var userLocation = null;
-
-    // /** lấy location user từ trên url */
-    // try {
-    //     var url = new URL(window.location.href);
-    //     var lat = url.searchParams.get("lat");
-    //     var lng = url.searchParams.get("lon");
-    //     if (lat && lng) {
-    //         userLocation = [parseFloat(lat), parseFloat(lng)];
-    //     }
-    // } catch (error) {
-    //     console.log("Lấy location của user bị lỗi.")
-    // }
-
-    // center = userLocation ? userLocation : center;
-
-    // // init map
-    // map = L.map('map', {
-    //     attributionControl: false,
-    //     // minZoom: 15
-    // }).setView(center, zoom);
-
-    // // add tile để map có thể hoạt động, xài free từ OSM
-    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    //     attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    // }).addTo(map);
-
-    // // L.marker(defaultCoord, { icon: Icons.f0new }).addTo(map);
-
-    // jsData.Data.forEach(patient => {
-    //     /** vẽ các f */
-    //     drawPatient(patient);
-    // });
-
     var center = { lat: 21.0012406, lng: 105.7938073 }
-    var map = L.map('map').setView(center, 12);
+    var zoom = 12;
+    var userLocation = null;
+
+    /** lấy location user từ trên url */
+    try {
+        var url = new URL(window.location.href);
+        var lat = url.searchParams.get("lat");
+        var lng = url.searchParams.get("lon");
+        // var lat = 20.9987425;
+        // var lng = 105.7935203;
+        if (lat && lng) {
+            userLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
+            zoom = 15;
+        }
+    } catch (error) {
+        console.log("Lấy location của user bị lỗi.")
+    }
+
+    map = L.map('map').setView(center, zoom);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -113,43 +101,17 @@ function initMap() {
         zoomOffset: -1
     }).addTo(map);
 
-    // function onLocationFound(e) {
-    //     var radius = e.accuracy / 2;
+    /** vẽ vị trí user */
+    if (userLocation) {
+        L.marker(userLocation, { icon: Icons.userLocation }).addTo(map);
+    }
 
-    //     L.marker(e.latlng).addTo(map)
-    //         .bindPopup("You are within " + radius + " meters from this point").openPopup();
-    //     console.log(e.latlng);
-
-    //     L.circle(e.latlng, radius).addTo(map);
-    // }
-
-
-
-
-    // var radius = e.accuracy / 2;
-
-    // L.marker(center).addTo(map)
-    //     // .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-    // // L.circle(center, radius).addTo(map);
-
-
-
-    // // function onLocationError(e) {
-    // //     alert(e.message);
-    // // }
-
-    // // map.on('locationfound', onLocationFound);
-    // // map.on('locationerror', onLocationError);
-
-    // map.locate({
-    //     setView: true,
-    //     maxZoom: 16
-    // });
+    jsData.Data.forEach(patient => {
+        /** vẽ các f */
+        drawPatient(patient);
+    });
 
 }
-
-
 
 window.onload = function() {
     initMap();
