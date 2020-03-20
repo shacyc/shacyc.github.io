@@ -1,6 +1,6 @@
 .cluster {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -10,8 +10,8 @@
 }
 
 .cluster div {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
