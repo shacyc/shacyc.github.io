@@ -64,41 +64,72 @@ var map = null;
 
 function initMap() {
 
-    var center = [21.0012406, 105.7938073]; // vị trí mặc định hiển thị bản đồ
-    var zoom = 20; // mặc định zoom
-    var userLocation = null;
+    // var center = [21.0012406, 105.7938073]; // vị trí mặc định hiển thị bản đồ
+    // var zoom = 20; // mặc định zoom
+    // var userLocation = null;
 
-    /** lấy location user từ trên url */
-    try {
-        var url = new URL(window.location.href);
-        var lat = url.searchParams.get("lat");
-        var lng = url.searchParams.get("lon");
-        if (lat && lng) {
-            userLocation = [parseFloat(lat), parseFloat(lng)];
-        }
-    } catch (error) {
-        console.log("Lấy location của user bị lỗi.")
-    }
+    // /** lấy location user từ trên url */
+    // try {
+    //     var url = new URL(window.location.href);
+    //     var lat = url.searchParams.get("lat");
+    //     var lng = url.searchParams.get("lon");
+    //     if (lat && lng) {
+    //         userLocation = [parseFloat(lat), parseFloat(lng)];
+    //     }
+    // } catch (error) {
+    //     console.log("Lấy location của user bị lỗi.")
+    // }
 
-    center = userLocation ? userLocation : center;
+    // center = userLocation ? userLocation : center;
 
-    // init map
-    map = L.map('map', {
-        attributionControl: false,
-        // minZoom: 15
-    }).setView(center, zoom);
+    // // init map
+    // map = L.map('map', {
+    //     attributionControl: false,
+    //     // minZoom: 15
+    // }).setView(center, zoom);
 
-    // add tile để map có thể hoạt động, xài free từ OSM
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    // // add tile để map có thể hoạt động, xài free từ OSM
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    //     attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    // }).addTo(map);
+
+    // // L.marker(defaultCoord, { icon: Icons.f0new }).addTo(map);
+
+    // jsData.Data.forEach(patient => {
+    //     /** vẽ các f */
+    //     drawPatient(patient);
+    // });
+
+    var map = L.map('map').fitWorld();
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
     }).addTo(map);
 
-    // L.marker(defaultCoord, { icon: Icons.f0new }).addTo(map);
+    function onLocationFound(e) {
+        var radius = e.accuracy / 2;
 
-    jsData.Data.forEach(patient => {
-        /** vẽ các f */
-        drawPatient(patient);
-    });
+        L.marker(e.latlng).addTo(map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+        L.circle(e.latlng, radius).addTo(map);
+    }
+
+    function onLocationError(e) {
+        alert(e.message);
+    }
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
+
+    map.locate({ setView: true, maxZoom: 16 });
+
 }
 
 
