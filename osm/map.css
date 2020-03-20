@@ -19,7 +19,6 @@ body {
 
 .leaflet-container a.leaflet-popup-close-button{
     font-size: 24px;
-    color: #ff0000;
 }
 
 .point-description {
@@ -40,12 +39,12 @@ body {
 }
 
 .description li {
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
 }
 
 .cluster {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -55,8 +54,8 @@ body {
 }
 
 .cluster div {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     display: flex;
     align-items: center;
