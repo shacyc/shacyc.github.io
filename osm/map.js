@@ -136,7 +136,10 @@ function processMap() {
 
     /** get dữ liệu */
     var data = [];
-    try {
+
+    if (window.location.origin === 'file://' || window.location.origin === "https://shacyc.github.io") {
+        data = jsData.Data;
+    } else {
         $.ajax({
             type: "GET",
             url: '/Home/CovidPatient',
@@ -147,13 +150,9 @@ function processMap() {
             },
             error: function() {
                 console.log('Không lấy được dữ liệu từ Api.');
-                if (window.location.origin === 'file://') data = jsData.Data;
             }
         });
-    } catch (error) {
-        data = jsData.Data;
     }
-
 
     /** tính toán ngày hqua và hnay để hiển thị f0 new */
     var f0date = [];
