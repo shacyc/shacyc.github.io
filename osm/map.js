@@ -3,7 +3,7 @@ var popup = null;
 var lines = [];
 
 /** Icons */
-var iconAnchor = [14, 16];
+var iconAnchor = [14, 14];
 var userIconAnchor = [8, 30];
 var iconSize =  [28, 28];
 var newCaseIconSize =  [20, 20];
