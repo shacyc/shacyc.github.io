@@ -59,7 +59,29 @@ function drawPatient(patient) {
             lat: parseFloat(patient.LocationLat),
             lng: parseFloat(patient.LocationLng)
         }
-        L.marker(patientLocation, { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] }).addTo(map);
+        var marker = L.marker(patientLocation, { icon: Icons[patient.ftype], zIndexOffset: MarkerZIndex[patient.ftype] }).addTo(map);
+
+        /** hiển thị popup thông tin chi tiết */
+        marker.on('click', function() {
+            popupContent =
+                `<div>
+                    <b>Trường hợp:</b> ${patient.Title}
+                </div>
+                <div>
+                    <b>Địa chỉ:</b> ${patient.Address}
+                </div>
+                <div>
+                    <b>Lộ trình</b>
+                </div>
+                <div>
+                    ${patient.Visits ? patient.Visits: ''}
+                </div>`;
+
+            popup = L.popup()
+                .setLatLng(patientLocation)
+                .setContent(popupContent)
+                .openOn(map);
+        })
 
     } catch (error) {
         console.log(error);
@@ -67,6 +89,7 @@ function drawPatient(patient) {
 }
 
 var map = null;
+var popup = null;
 
 function initMap() {
 
