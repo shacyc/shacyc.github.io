@@ -3,7 +3,7 @@ body {
     padding: 0;
     margin: 0;
     height: 100%;
-    font-family: 'Roboto', 'San Francisco', 'Segoe UI';
+    font-family: 'Roboto', 'San Francisco', 'Helvetica', 'Segoe UI';
 }
 
 #map {
