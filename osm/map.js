@@ -284,14 +284,14 @@ function customMap() {
     var HSTS = [
         { lat: 16.531174, lng: 111.611804, title: 'Quần đảo Hoàng Sa' },
         { lat: 10.767119, lng: 115.825618, title: 'Quần đảo Trường Sa' },
-        { lat: 12.483703, lng: 114.038648, title: 'Biển Đông' }
+
     ];
     HSTS.map((qd) => {
 
         var html = `
         <div class="vietnam">
           <img src="${Icons.Vietnam.options.iconUrl}">
-          <div><b>${qd.title}</b></div>
+          <div>${qd.title}</div>
         </div>
         `;
 
@@ -302,6 +302,15 @@ function customMap() {
             })
         }).addTo(map);
     });
+
+
+    /** biển đông */
+    L.marker({ lat: 12.483703, lng: 114.038648 }, {
+        icon: new L.DivIcon({
+            className: "",
+            html: '<div class="vietnam">Biển Đông</div>'
+        })
+    }).addTo(map);
 }
 
 /**
