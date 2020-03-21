@@ -109,6 +109,10 @@ function drawPatient(patient, f0date) {
                 </div>`;
             }
 
+            /** hide description */
+            $('.description').hide();
+
+            /** show popup */
             popup = L.popup()
                 .setLatLng(patientLocation)
                 .setContent(popupContent)
@@ -270,6 +274,9 @@ function processMap() {
  * click map event
  */
 function mapClickEvent() {
+    /** show description */
+    $('.description').show();
+
     /** xóa hết các đường line */
     lines.forEach(line => {
         line.remove();
@@ -336,7 +343,7 @@ function initMap() {
         console.log("Lấy location của user bị lỗi.");
     }
 
-    map = L.map("map").setView(userLocation ? userLocation : center, zoom);
+    map = L.map("map", { zoomControl: false }).setView(userLocation ? userLocation : center, zoom);
 
     L.tileLayer(
         "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw", {
