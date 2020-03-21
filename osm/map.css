@@ -39,7 +39,7 @@ body {
 }
 
 .description li {
-    /* margin-bottom: 4px; */
+    line-height: 20px;
 }
 
 .cluster {
@@ -114,4 +114,5 @@ body {
 
 .vietnam img {
     width: 25px;
+    opacity: .8;
 }

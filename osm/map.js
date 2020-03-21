@@ -4,7 +4,7 @@ var lines = [];
 
 /** Icons */
 var iconAnchor = [14, 14];
-var userIconAnchor = [8, 30];
+var userIconAnchor = [20, 0];
 var iconSize = [28, 28];
 var newCaseIconSize = [20, 20];
 
@@ -343,7 +343,7 @@ function initMap() {
 
     /** vẽ vị trí user */
     if (userLocation) {
-        L.marker(userLocation, { icon: Icons.userLocation }).addTo(map);
+        L.marker(userLocation, { icon: Icons.userLocation }).bindPopup('Bạn đang ở đây').addTo(map);
     }
 
     /** custom map */
