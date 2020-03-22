@@ -351,8 +351,8 @@ function initMap() {
         console.log("Lấy location của user bị lỗi.");
     }
 
-    var southWest = L.latLng(21.128442, 105.601417),
-        northEast = L.latLng(20.879833, 106.085265),
+    var southWest = L.latLng(21.803614, 104.732575),
+        northEast = L.latLng(19.902267, 107.354473),
         bounds = L.latLngBounds(southWest, northEast);
 
     // map = L.map('map', {
