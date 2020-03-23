@@ -3,9 +3,9 @@ var popup = null;
 var lines = [];
 
 /** Icons */
-var iconAnchor = [14, 14];
+var iconAnchor = [9, 9];
 var userIconAnchor = [20, 0];
-var iconSize = [28, 28];
+var iconSize = [18, 18];
 var newCaseIconSize = [20, 20];
 
 
@@ -64,6 +64,8 @@ function drawPatient(patient, f0date) {
             return;
         }
 
+
+
         /** tính loại f */
         patient.ftype = `f${patient.Status - 1}`;
         if (patient.ftype === 'f0' && patient.IsolateDate && patient.IsolateDate.length > 0) {
@@ -77,6 +79,12 @@ function drawPatient(patient, f0date) {
             ) {
                 patient.ftype = "f0new";
             }
+        }
+
+        /** bỏ vẽ f2 f3 f4 */
+        var removef = ['f2', 'f3', 'f4', 'f5']
+        if (removef.indexOf(patient.ftype) > -1) {
+            return;
         }
 
         /** vẽ marker bệnh nhân */
@@ -211,7 +219,8 @@ function drawCluster(ftype) {
             return new L.DivIcon({
                 html: `<div class="cluster ${ftype}"><div>${cl.getChildCount()}</div></div>`
             });
-        }
+        },
+        maxClusterRadius: (ftype === 'f0' ? 10 : 80)
     });
 
     clusterMarker[ftype].forEach(m => {
@@ -268,9 +277,7 @@ function processMap() {
     drawCluster("f345");
     drawCluster("f2");
     drawCluster("f1");
-    clusterMarker.f0.forEach(m => {
-        m.addTo(map);
-    });
+    drawCluster("f0");
 }
 
 /**
@@ -351,15 +358,15 @@ function initMap() {
         console.log("Lấy location của user bị lỗi.");
     }
 
-    var southWest = L.latLng(21.803614, 104.732575),
-        northEast = L.latLng(19.902267, 107.354473),
-        bounds = L.latLngBounds(southWest, northEast);
+    var topLeft = L.latLng(21.803614, 104.732575),
+        bottomRight = L.latLng(19.902267, 107.354473),
+        bounds = L.latLngBounds(topLeft, bottomRight);
 
-    // map = L.map('map', {
-    //     maxBounds: bounds
-    // });
-
-    map = L.map("map", {maxBounds: bounds, minZoom: 9.5}).setView(userLocation ? userLocation : center, zoom);
+    map = L.map("map", {
+        maxBounds: bounds,
+        minZoom: 9.5,
+        zoomControl: false
+    }).setView(userLocation ? userLocation : center, zoom);
 
     // L.tileLayer(
     //     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw", {
@@ -374,7 +381,7 @@ function initMap() {
     // ).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
     /** vẽ vị trí user */
@@ -383,7 +390,7 @@ function initMap() {
     }
 
     /** custom map */
-    customMap();
+    // customMap();
 
     /** map event */
     map.on('click', mapClickEvent)

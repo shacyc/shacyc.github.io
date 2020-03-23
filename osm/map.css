@@ -25,18 +25,20 @@ body {
 .point-description {
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .point-description img {
-    width: 24px;
-    height: 24px;
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
 }
 
 .point-description img.gif {
-    width: 17px;
-    height: 17px;
-    margin-right: 3px;
-    margin-left: 3px;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    margin-left: 1px;
 }
 
 .description li {
@@ -55,12 +57,22 @@ body {
 }
 
 .cluster div {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 12px;
+}
+
+.cluster.f0 {
+    background-color: red;
+}
+
+.cluster.f0 div {
+    background-color: red;
+    color: rgba(255, 255, 255, 0.87);
 }
 
 .cluster.f1 {
@@ -116,4 +128,8 @@ body {
 .vietnam img {
     width: 25px;
     opacity: .8;
+}
+
+.leaflet-container .leaflet-tile-pane img {
+    filter: grayscale(.4);
 }
