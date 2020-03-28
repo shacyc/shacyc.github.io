@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="a" x="0" y="0" width="35" height="35" filterUnits="userSpaceOnUse">
+<feOffset input="SourceAlpha"/>
+<feGaussianBlur result="blur" stdDeviation="2.5"/>
+<feFlood flood-opacity=".4"/>
+<feComposite in2="blur" operator="in"/>
+<feComposite in="SourceGraphic"/>
+</filter>
+</defs>
+<g filter="url(#a)">
+<circle transform="translate(7.5 7.5)" cx="10" cy="10" r="10" fill="red" data-name="f0"/>
+</g>
+</svg>

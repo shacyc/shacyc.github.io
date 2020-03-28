@@ -1,0 +1,224 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', 'San Francisco', 'Helvetica', 'Segoe UI';
+}
+
+#map {
+    height: 100%;
+    width: 100vw;
+}
+
+.leaflet-popup-pane {
+    z-index: 9000;
+}
+
+.description {
+    margin-block-start: 4px !important;
+    margin-block-end: 4px !important;
+    padding-right: 8px !important;
+    padding-left: 0 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    font-size: 24px;
+}
+
+.point-description {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.point-description img {
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+}
+
+.point-description img.gif {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    margin-left: 1px;
+}
+
+.description li {
+    line-height: 20px;
+    list-style-type: none;
+}
+
+.cluster-hidden {
+    opacity: 0.1 !important;
+}
+
+.leaflet-div-icon {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.f0-visits {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.f-cluster {
+    width: 22px;
+    height: 22px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 50%;
+    margin-left: -6px;
+    margin-top: -6px;
+}
+
+.f-cluster div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-cluster.f0 {
+    background-color: red;
+}
+
+.f-cluster.f0 div {
+    background-color: red;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.f-cluster.f1 {
+    background-color: rgba(255, 179, 0, .5);
+}
+
+.f-cluster.f1 div {
+    background-color: rgb(255, 179, 0);
+}
+
+.f-cluster.f2 {
+    background-color: rgba(255, 242, 124, .5);
+}
+
+.f-cluster.f2 div {
+    background-color: rgb(255, 242, 124);
+}
+
+.f-cluster.f345 {
+    background-color: rgb(117, 222, 255, .5);
+}
+
+.f-cluster.f345 div {
+    background-color: rgb(117, 222, 255);
+}
+
+.f0-visit-description {
+    max-height: 200px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+.vietnam {
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vietnam img {
+    width: 25px;
+    opacity: .8;
+}
+
+.leaflet-container .leaflet-tile-pane img {
+    /* outline: 256px solid rgba(0, 0, 0, 0.05) !important;
+    outline-offset: -256px; */
+    filter: grayscale(.4);
+}
+
+.f0new-cluster {
+    border-radius: 50%;
+    /* border: 1px solid white; */
+    position: relative;
+    background-color: transparent;
+}
+
+.f0new-cluster:before {
+    animation: pulseWarning 1.2s linear infinite;
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.f0new-cluster:after {
+    background-color: red;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.f0new-cluster div {
+    z-index: 2;
+    color: white;
+}
+
+.scaleWarning {
+    animation: scaleWarning 0.75s infinite alternate;
+}
+
+@keyframes scaleWarning {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseWarning {
+    0% {
+        background-color: red;
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    30% {
+        background-color: red;
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        background-color: red;
+        transform: scale(2);
+        opacity: 0;
+    }
+}
