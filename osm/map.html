@@ -16,12 +16,13 @@
     <script src="leaflet.js"></script>
     <script src="leaflet.markercluster.js"></script>
     <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <script src="data.js"></script>
     <script src="map.js"></script>
 </head>
 
-<body>
-    <div style=" border: 1px solid #ccc; position: absolute; z-index: 1000000000; list-style-type: none;background-color: rgba(224, 224, 224, 0.7)">
+<body id="mainContainer">
+    <div style=" border: 1px solid #ccc; position: absolute; z-index: 1000000000; list-style-type: none;background-color: rgba(224, 224, 224, 0.7); display: none;">
         <ul class="description">
             <li>
                 <div class="point-description"><img class="gif" src="images/f0new.gif" />Ca mới</div>
@@ -42,6 +43,42 @@
                 <div class="point-description"><img src="images/f0dest.svg" />F0 đã đến</div>
             </li>
         </ul>
+    </div>
+
+    <div class="search-box">
+        <span id="cancelSearch" class="back-icon">&lt;</span>
+        <input id="searchBox" placeholder="Tìm trường hợp, địa điểm">
+    </div>
+    <div id="searchResult">
+        <div class="search-group" id="searchNewCase">
+            <div class="group-title">
+                Ca nhiễm mới
+            </div>
+            <div class="result-row">
+                <div class="f0-name">
+                    <a href="">BN-17</a>
+                </div>
+                <div class="f0-address">
+                    một nơi nào đó như bao nơi nào
+                </div>
+            </div>
+            <div class="result-row">
+                <div class="f0-name">
+                    <a href="">BN-18</a>
+                </div>
+                <div class="f0-address">
+                    một nơi nào đó như bao nơi nào
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoBox" class="info-box">
+        <div class="info-box-toggle"></div>
+        <p onclick="console.log(111)">abs</p>
+        <p>abs</p>
+        <p>abs</p>
+        <p>abs</p>
     </div>
 
     <div id='map'></div>
