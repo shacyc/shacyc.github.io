@@ -5,7 +5,7 @@
     <style>
         .qrcode-text-btn {
             display: inline-block;
-            height: 1em;
+            height: 46px;
             width: 1em;
             background: url(qr_icon.svg) 50% 50% no-repeat;
             cursor: pointer;
@@ -22,21 +22,18 @@
         .qrcode-text {
             padding-right: 1.7em;
             margin-right: 0;
+            font-size: 50px;
             vertical-align: middle;
         }
         
         .qrcode-text+.qrcode-text-btn {
-            width: 1.7em;
-            margin-left: -1.7em;
+            width: 50px;
+            margin-left: -62px;
+            margin-top: 2px;
             vertical-align: middle;
         }
     </style>
 
-    <div>1</div>
-    <input type="file" accept="image/*" capture="camera" />
-    <div>2</div>
-    <input type="file" accept="image/*;capture=camera">
-    <div>3</div>
     <input type=text class=qrcode-text>
     <label class=qrcode-text-btn>
         <input type=file
@@ -66,7 +63,7 @@
     }
 
     function showQRIntro() {
-        return confirm("Use your camera to take a picture of a QR code.");
+        return confirm("Chụp ảnh lại, nếu có qr code thì sẽ hiển thị ở textfield.");
     }
 </script>
 
