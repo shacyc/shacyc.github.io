@@ -1,0 +1,3 @@
+https://mapstyle.withgoogle.com/
+
+https://maps.googleapis.com/maps/api/staticmap?key=YOUR_API_KEY&center=20.99996934512004,105.79724408166005&zoom=15&format=png&maptype=roadmap&style=feature:poi.attraction%7Cvisibility:off&style=feature:poi.business%7Cvisibility:off&style=feature:poi.government%7Cvisibility:off&style=feature:poi.medical%7Cvisibility:off&style=feature:poi.park%7Cvisibility:off&style=feature:poi.place_of_worship%7Cvisibility:off&style=feature:poi.school%7Cvisibility:off&style=feature:poi.sports_complex%7Cvisibility:off&size=480x360
