@@ -29,7 +29,7 @@ touch index.html
 ### create config
 touch /etc/nginx/conf.d/nginx_demo.conf
 
-```javascript
+```json
 server {
     listen 8094;
     server_name huongdan.helisoft.vn;
