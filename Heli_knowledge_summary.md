@@ -76,4 +76,6 @@ server {
 
 #### start
 service firewall stop
+firewall-cmd --permanent --add-port=8094/tcp
+firewall-cmd --reload
 set enforce 0
