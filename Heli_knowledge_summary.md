@@ -29,6 +29,7 @@ touch index.html
 ### create config
 touch /etc/nginx/conf.d/nginx_demo.conf
 
+```javascript
 server {
     listen 8094;
     server_name huongdan.helisoft.vn;
@@ -71,6 +72,7 @@ server {
         add_header Content-Type text/plain;
     }
 }
+```
 
 #### start
 service firewall stop
