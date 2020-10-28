@@ -262,3 +262,8 @@ vrrp_instance VI_1 {
 - priority: run minimun priority
 - virtual_ipaddress: virtual ip use in all load balancer
 
+#### start
+```console
+service keepalived start
+```
+
