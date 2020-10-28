@@ -255,8 +255,10 @@ vrrp_instance VI_1 {
         }
 }
 ```
+###### script
 - killall -0 haproxy: check haproxy alive or not
 - weight x: if haproxy is die, add x into priority
+###### instance
 - interface: get ethernet interface from **ip a**
 - state MASTER/BACKUP: check loadbalancing is master or backup
 - priority: run minimun priority
