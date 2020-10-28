@@ -1,10 +1,11 @@
 ## install repo, software
-Install *repository* and *update*
+#### Install *repository* and *update*
 ```console
 sudo yum install epel-release -y  
 sudo yum update -y
 ```
-Install neccessary software
+
+#### Install neccessary software
 ```console
 yum install ntp ntpdate rsync htop net-tools wget telnet -y
 ```
@@ -16,8 +17,10 @@ yum install ntp ntpdate rsync htop net-tools wget telnet -y
 - wget: download file from internet
 - telnet: telnet
 
-### rename host
-hostnamectl set-hostname <<hostname>>
+#### Rename host
+```console
+hostnamectl set-hostname your_host_name
+```
 
 ## Haproxy
 ### install
