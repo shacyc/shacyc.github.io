@@ -1,16 +1,20 @@
-## After install
+## install repo, software
 Install *repository* and *update*
 ```console
 sudo yum install epel-release -y  
 sudo yum update -y
 ```
+Install neccessary software
+```console
 yum install ntp ntpdate rsync htop net-tools wget telnet -y
-ntp: sync time (server)
-ntpdate: sync time (client)
-rsync: sync copy file between servers
-htop: view system monitors
-net-tools: ipconfig,...
-wget: 
+```
+- ntp: sync time (server)
+- ntpdate: sync time (client)
+- rsync: sync copy file between servers
+- htop: view system monitors
+- net-tools: ipconfig,...
+- wget: download file from internet
+- telnet: telnet
 
 ### rename host
 hostnamectl set-hostname <<hostname>>
