@@ -207,8 +207,17 @@ server {
 }
 ```
 
-#### start
+#### start web server
+###### firewall
+stop firewall or open port
+```console
 service firewall stop
+```
+``` console
 firewall-cmd --permanent --add-port=8094/tcp
 firewall-cmd --reload
+```
+When using nginx, we have to disable SELinux
+```console
 set enforce 0
+```
