@@ -136,6 +136,8 @@ backend app
     server  app3 127.0.0.1:5003 check
     server  app4 127.0.0.1:5004 check
 ```
+- frontend: which request haproxy process
+- backend: where requets will be forwarded
 
 # Web server
  
