@@ -142,15 +142,27 @@ backend app
 # Web server
  
 ## Nginx
-### install
-yum install nginx
-### create web folder
-mkdir -p /home/www/nginx_demo
-touch index.html
-### create config
-touch /etc/nginx/conf.d/nginx_demo.conf
 
-```json
+#### install
+
+```console
+yum install nginx
+```
+
+#### create web folder
+
+```console
+mkdir -p /home/www/<<site name>>
+touch index.html
+```
+
+#### set config
+###### create config file
+```console
+touch /etc/nginx/conf.d/<<site name>>.conf
+```
+###### config
+```javascript
 server {
     listen 8094;
     server_name huongdan.helisoft.vn;
