@@ -221,6 +221,10 @@ When using nginx, we have to disable SELinux
 ```console
 setenforce 0
 ```
+###### start
+```console
+service nginx start
+```
 
 # Virtual IP (VIP)
 
