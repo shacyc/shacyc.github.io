@@ -243,7 +243,9 @@ vi /etc/keepalived/keepalived.conf
 vrrp_script chk_haproxy {           # Requires keepalived-1.1.13
         script "killall -0 haproxy"     # cheaper than pidof
         interval 2                      # check every 2 seconds
-        weight 2                        # add 2 points of prio if OK
+        #weight 2                        # add 2 points of prio if OK
+        fall 2
+        rise 2
 }
 
 vrrp_instance VI_1 {
@@ -272,4 +274,11 @@ vrrp_instance VI_1 {
 ```console
 service keepalived start
 ```
+# Gitlab
 
+## Install
+[Install gitlab on centos 7](https://about.gitlab.com/install/#centos-7)
+
+```console
+
+```
