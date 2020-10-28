@@ -22,6 +22,14 @@ yum install ntp ntpdate rsync htop net-tools wget telnet -y
 hostnamectl set-hostname your_host_name
 ```
 
+#### SSH
+###### get ip
+```console
+ip a
+```
+###### install mobaxterm
+[Get MobaXterm](https://mobaxterm.mobatek.net/download.html)
+
 ## Haproxy
 ### install
 yum install haproxy
