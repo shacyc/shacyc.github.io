@@ -1,7 +1,9 @@
 ## After install
-sudo yum install epel-release -y
+Install *repository* and *update*
+```console
+sudo yum install epel-release -y  
 sudo yum update -y
-
+```
 yum install ntp ntpdate rsync htop net-tools wget telnet -y
 ntp: sync time (server)
 ntpdate: sync time (client)
