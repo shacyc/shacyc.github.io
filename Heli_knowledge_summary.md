@@ -221,3 +221,44 @@ When using nginx, we have to disable SELinux
 ```console
 setenforce 0
 ```
+
+# Virtual IP (VIP)
+
+## Keep alived
+#### install
+```console
+yum install psmisc keepalived -y
+```
+
+#### config
+```console
+vi /etc/keepalived/keepalived.conf
+```
+
+```javascript
+vrrp_script chk_haproxy {           # Requires keepalived-1.1.13
+        script "killall -0 haproxy"     # cheaper than pidof
+        interval 2                      # check every 2 seconds
+        weight 2                        # add 2 points of prio if OK
+}
+
+vrrp_instance VI_1 {
+        interface enp1s0
+        state MASTER
+        virtual_router_id 51
+        priority 101   # 101 on master, 100 on backup
+        virtual_ipaddress {
+            192.168.122.6/24
+        }
+        track_script {
+            chk_haproxy
+        }
+}
+```
+- killall -0 haproxy: check haproxy alive or not
+- weight x: if haproxy is die, add x into priority
+- interface: get ethernet interface from **ip a**
+- state MASTER/BACKUP: check loadbalancing is master or backup
+- priority: run minimun priority
+- virtual_ipaddress: virtual ip use in all load balancer
+
