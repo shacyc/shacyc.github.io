@@ -219,5 +219,5 @@ firewall-cmd --reload
 ```
 When using nginx, we have to disable SELinux
 ```console
-set enforce 0
+setenforce 0
 ```
