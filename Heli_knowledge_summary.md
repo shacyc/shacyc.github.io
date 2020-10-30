@@ -300,9 +300,9 @@ sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
 ## Struct
 - Root
     - Group
-- - - Project
-- - Repo
-- - - Project
+        - Project
+    - Repo
+        - Project
 
 #### Group
 - private: The group and its projects can only be viewed by members. (Usually use)
