@@ -324,5 +324,16 @@ sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
 ```console
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
 export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E yum install gitlab-runner
+sudo gitlab-runner start
 ```
 #### implement
+- Gitlab -> Setting -> CI/CD -> expand Runner -> Specific Runners (**)
+
+```console
+gitlab-runner register
+```
+- Please enter the gitlab-ci coordinator URL: get from (**)
+- Please enter the gitlab-ci token for this runner: get from (**)
+- Please enter the gitlab-ci description for this runner: any description
+- Please enter the gitlab-ci tags for this runner: partition by group or envirment ( dotnet, vue, ... )
+- Please enter the executor: ***shell**
