@@ -308,3 +308,21 @@ sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
 - private: The group and its projects can only be viewed by members. (Usually use)
 - internal: The group and any internal projects can be viewed by any logged in user.
 - publish: The group and any public projects can be viewed without any authentication.
+
+#### Project
+###### Branch
+- Master: only for maintain role
+- Beta 
+- Dev
+
+# CI/CD
+## Gitlab runner
+#### install
+
+[Intalling guide](https://docs.gitlab.com/runner/install/)
+
+```console
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
+export GITLAB_RUNNER_DISABLE_SKEL=true; sudo -E yum install gitlab-runner
+```
+#### implement
