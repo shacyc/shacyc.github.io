@@ -337,3 +337,9 @@ gitlab-runner register
 - Please enter the gitlab-ci description for this runner: any description
 - Please enter the gitlab-ci tags for this runner: partition by group or envirment ( dotnet, vue, ... )
 - Please enter the executor: **shell**
+
+#### config file
+
+```console
+cat /etc/gitlab-runner/config.toml
+```
