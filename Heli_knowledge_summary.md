@@ -299,7 +299,7 @@ sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
 
 ## Struct
 - Root
-    - Group
+  - Group
         - Project
     - Repo
         - Project
