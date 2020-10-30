@@ -296,3 +296,15 @@ curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rp
 
 sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
 ```
+
+## Struct
+- Root
+- - Group
+- - - Project
+- - Repo
+- - - Project
+
+#### Group
+- private: The group and its projects can only be viewed by members. (Usually use)
+- internal: The group and any internal projects can be viewed by any logged in user.
+- publish: The group and any public projects can be viewed without any authentication.
