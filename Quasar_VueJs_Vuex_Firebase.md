@@ -46,14 +46,14 @@ methods: {
 
 #### src/App.vue
 - main component of project
-- **<route-view/>**: where the layout will be loaded
+- **route-view**: where the layout will be loaded
 
 #### src/layouts
 - layout of pages
 - contain everything around pages
 
 ###### MyLayout.vue
-- **<route-view/>**: where the page will be loaded
+- **route-view**: where the page will be loaded
 
 #### src/pages
 - invidual page
