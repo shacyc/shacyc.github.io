@@ -18,6 +18,11 @@
 <input type="text" v-model="message">
 ```
 
+###### Click event - @click
+```html
+<button @click="changeMessage">Click me!</button>
+```
+
 #### script
 ```javascript
 data() { 
