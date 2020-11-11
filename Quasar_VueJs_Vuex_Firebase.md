@@ -37,3 +37,7 @@ methods: {
   }
 }
 ```
+
+# Quasar
+
+[1. Install Quasar CLI](https://quasar.dev/start/quasar-cli)
