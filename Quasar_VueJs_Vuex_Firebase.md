@@ -1,3 +1,6 @@
 # Vue.js
 ## Syntax
-**{{ data }}** bind data
+#### Dom transform {{ }}
+***html
+<p> {{ message }} </p>
+***
