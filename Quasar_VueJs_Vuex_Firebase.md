@@ -1,6 +1,6 @@
 # Vue.js
 ## Syntax
-#### Dom transform {{ }}
-```html
+#### Dom transform - {{ }}
+```vue
 <p> {{ message }} </p>
 ```
