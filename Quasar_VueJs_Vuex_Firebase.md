@@ -40,4 +40,30 @@ methods: {
 
 # Quasar
 
-[1. Install Quasar CLI](https://quasar.dev/start/quasar-cli)
+[1. Install Quasar CLI and create Quasar project](https://quasar.dev/quasar-cli/installation)
+
+## Project structure
+
+#### src/App.vue
+- main component of project
+- **<route-view/>**: where the layout will be loaded
+
+#### src/layouts
+- layout of pages
+- contain everything around pages
+
+###### MyLayout.vue
+- **<route-view/>**: where the page will be loaded
+
+#### src/pages
+- invidual page
+- contain content of page
+
+#### src/assets
+- images, icons, ...
+
+#### src/boot
+- everything you want to do before app start
+
+#### src/components
+- where vue components will be stored
