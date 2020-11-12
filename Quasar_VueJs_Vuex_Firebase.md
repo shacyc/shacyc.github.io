@@ -43,23 +43,23 @@ method: {
 
 Or using [Keycode](https://vuejs.org/v2/guide/events.html#Key-Codes)
 ```html
-  <input @keyup.esc="handleKeyUp" 
-         @keyup.enter="handleKeyUp" 
-         @keyup.tab="handleKeyUp" 
-         @keyup.delete="handleKeyUp" 
-         @keyup.esc="handleKeyUp" 
-         @keyup.space="handleKeyUp" 
-         @keyup.up="handleKeyUp" 
-         @keyup.down="handleKeyUp" 
-         @keyup.left="handleKeyUp" 
-         @keyup.right="handleKeyUp" 
-   />
+<input @keyup.esc="handleKeyUp" 
+       @keyup.enter="handleKeyUp" 
+       @keyup.tab="handleKeyUp" 
+       @keyup.delete="handleKeyUp" 
+       @keyup.esc="handleKeyUp" 
+       @keyup.space="handleKeyUp" 
+       @keyup.up="handleKeyUp" 
+       @keyup.down="handleKeyUp" 
+       @keyup.left="handleKeyUp" 
+       @keyup.right="handleKeyUp" 
+ />
 ```
 ###### Mouse event - @mouseenter, @mouseleave
 ```html
-  <input @mouseenter="handleMouse"
-         @mouseleave="handleMouse"
-  />
+<input @mouseenter="handleMouse"
+       @mouseleave="handleMouse"
+/>
 ```
 ###### Condition - @v-if, @v-else
 ```html
