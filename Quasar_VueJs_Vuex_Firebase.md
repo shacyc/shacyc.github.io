@@ -86,6 +86,11 @@ export default {
     revesedMessage() {
       return this.message.split('').reverse().join('');
     }
+  },
+  filters: {
+    dateFormat(value) {
+      return `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
+    }
   }
 }
 ```
@@ -97,7 +102,9 @@ Return an object contains component's data
 An object contains component's methods
 
 ###### computed
-Any complex logic, you should use a **computed property**
+- Any complex logic, you should use a **computed property**
+- Computed properties are cached based on their reactive dependencies
+
 ```html
 <p v-model="revesedMessage"></p>
 ```
@@ -105,6 +112,18 @@ Any complex logic, you should use a **computed property**
 computed: {
   revesedMessage() {
     return this.message.split('').reverse().join('');
+  }
+```
+###### filters
+Apply common **text formatting**
+```html
+<p v-model="birthday | dateFormat"></p>
+```
+```javascript
+filters: {
+    dateFormat(value) {
+      return `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
+    }
   }
 ```
 
