@@ -91,6 +91,13 @@ export default {
     dateFormat(value) {
       return `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
     }
+  },
+  directives: {
+    autofocus: {
+      inserted(el) {
+        el.focus;
+      }
+    }
   }
 }
 ```
@@ -125,6 +132,21 @@ filters: {
       return `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
     }
   }
+```
+###### directives
+Everything start with **v-** is called directives  
+We can add self-defined directives by adding directives object
+```html
+<input v-autofocus>
+```
+```javascript
+directives: {
+  autofocus: {
+    inserted(el) {
+      el.focus();
+    }
+  }
+}
 ```
 
 # Quasar
