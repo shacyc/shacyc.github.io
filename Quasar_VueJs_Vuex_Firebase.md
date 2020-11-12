@@ -61,6 +61,10 @@ methods: {
 
 #### src/assets
 - images, icons, ...
+- file will be processed by webpack
+
+#### src/store
+- process by **Vuex**
 
 #### src/boot
 - everything you want to do before app start
