@@ -70,17 +70,42 @@ If false, it'll **remove dom element**
 
 #### script
 ```javascript
-data() { 
-  return {
-    message: "This is a message",
-    isShowMessage: true
-  }
-},
-methods: {
-  changeMessage() {
-    this.message = "This method will change message content";
+export default {
+  data() { 
+    return {
+      message: "This is a message",
+      isShowMessage: true
+    }
+  },
+  methods: {
+    changeMessage() {
+      this.message = "This method will change message content";
+    }
+  },
+  computed: {
+    revesedMessage() {
+      return this.message.split('').reverse().join('');
+    }
   }
 }
+```
+
+###### data
+Return an object contains component's data
+
+###### methos
+An object contains component's methods
+
+###### computed
+Any complex logic, you should use a **computed property**
+```html
+<p v-model="revesedMessage"></p>
+```
+```javascript
+computed: {
+  revesedMessage() {
+    return this.message.split('').reverse().join('');
+  }
 ```
 
 # Quasar
