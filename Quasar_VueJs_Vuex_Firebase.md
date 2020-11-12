@@ -68,6 +68,28 @@ Or using [Keycode](https://vuejs.org/v2/guide/events.html#Key-Codes)
 ```
 If false, it'll **remove dom element**
 
+###### Binding to attributes or css - v-bind: (or :)
+Use can use both **v-bind:** and **:**  
+1. binding directly
+```html
+<input :class="{'input-error-class': messange.length > 255}">
+```
+2. using computed
+```html
+<input :style="inputErrorStyle">
+```
+```javascript
+computed: {
+  inputErrorStyle(): {
+    if (this.message.length > 255)
+      return {
+        'border': '1px solid red',
+        'color': 'red'
+      }
+  }
+}
+```
+
 #### script
 ```javascript
 export default {
