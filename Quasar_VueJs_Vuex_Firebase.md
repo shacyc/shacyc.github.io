@@ -14,9 +14,15 @@
 ```
 
 ###### Visibility - v-show
+Use data
 ```html
 <p v-show="isShowMessage"> {{ message }} </p>
 ```
+Or using direct condition
+```html
+<p v-show="message.length"> {{ message }} </p>
+```
+If v-show = false, it'll add **display: none;** style
 
 ###### Click event - @click
 ```html
@@ -49,6 +55,18 @@ Or using [Keycode](https://vuejs.org/v2/guide/events.html#Key-Codes)
          @keyup.right="handleKeyUp" 
    />
 ```
+###### Mouse event - @mouseenter, @mouseleave
+```html
+  <input @mouseenter="handleMouse"
+         @mouseleave="handleMouse"
+  />
+```
+###### Condition - @v-if, @v-else
+```html
+<h5 v-if="message.length">If condition</h5>
+<h5 v-else>Else condition</h5
+```
+If false, it'll **remove dom element**
 
 #### script
 ```javascript
