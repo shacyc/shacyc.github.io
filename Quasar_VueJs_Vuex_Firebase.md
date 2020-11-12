@@ -120,7 +120,31 @@ export default {
         el.focus;
       }
     }
-  }
+  },
+  beforeCreate() {
+    console.log("before create")
+  },
+  created() {
+    console.log("created")
+  },
+  beforeMount() {
+    console.log("before mount")
+  },
+  mounted() {
+    console.log("mounted")
+  },
+  beforeUpdate() {
+    console.log("before update")
+  },
+  updated() {
+    console.log("updated")
+  },
+  beforeDestroy() {
+    console.log("before update")
+  },
+  destroyed() {
+    console.log("updated")
+  },
 }
 ```
 
@@ -173,7 +197,44 @@ directives: {
 
 ## Lifecycle hook
 #### create component
-1. **beforeCreate()**: 
+![Vue.js lifecycle hook](img/vuejslifecycle.png "Vue.js lifecycle hook")
+```javascript
+beforeCreate() {
+  console.log("before create")
+},
+created() {
+  console.log("created")
+},
+beforeMount() {
+  console.log("before mount")
+},
+mounted() {
+  console.log("mounted")
+},
+beforeUpdate() {
+  console.log("before update")
+},
+updated() {
+  console.log("updated")
+},
+beforeDestroy() {
+  console.log("before update")
+},
+destroyed() {
+  console.log("updated")
+},
+```
+
+## Refs (Id)
+Use ref in component's items to define their's id
+```html
+<input ref="txtUserName">
+```
+```javascript
+mounted(): {
+  this.$refs.txtUserName.className = 'input-class';
+}
+```
 
 # Quasar
 
