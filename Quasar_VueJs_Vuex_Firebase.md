@@ -102,8 +102,8 @@ Return an object contains component's data
 An object contains component's methods
 
 ###### computed
-- Any complex logic, you should use a **computed property**
-- Computed properties are cached based on their reactive dependencies
+- Any **complex logic**, you should use a computed property
+- Computed properties are **cached based on their reactive dependencies**, so, it has better performance than binding with methods
 
 ```html
 <p v-model="revesedMessage"></p>
