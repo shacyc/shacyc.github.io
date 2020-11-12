@@ -171,6 +171,10 @@ directives: {
 }
 ```
 
+## Lifecycle hook
+#### create component
+1. **beforeCreate()**: 
+
 # Quasar
 
 [1. Install Quasar CLI and create Quasar project](https://quasar.dev/quasar-cli/installation)
