@@ -8,19 +8,31 @@
 <p> {{ message }} </p>
 ```
 
+###### 2-way binding - v-model
+```html
+<input type="text" v-model="message">
+```
+
 ###### Visibility - v-show
 ```html
 <p v-show="isShowMessage"> {{ message }} </p>
 ```
 
-###### Binding model - v-model
-```html
-<input type="text" v-model="message">
-```
-
 ###### Click event - @click
 ```html
 <button @click="changeMessage">Click me!</button>
+```
+###### Key up event - @keyup
+```html
+<input @keyup="handleKeyUp" />
+```
+
+```javascript
+method: {
+  handleKeyUp(e) {
+    console.log(e.keyCode, e.key);
+  }
+}
 ```
 
 #### script
@@ -41,6 +53,10 @@ methods: {
 # Quasar
 
 [1. Install Quasar CLI and create Quasar project](https://quasar.dev/quasar-cli/installation)
+
+## Layout
+#### Layout style class
+- **padding**
 
 ## Project structure
 
