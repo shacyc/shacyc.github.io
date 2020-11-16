@@ -90,6 +90,32 @@ computed: {
 }
 ```
 
+###### List - v-for
+```html
+<ul>
+  <li v-for="(task, index) in tasks"> 
+    <div>{{ task.name }}</div>
+    <small>{{ task.dueDate }} @ {{ task.dueTime }}</small>
+    <button @click="deleteTask(index)">X</button>
+  </li>
+</ul>
+```
+```javascript
+data() {
+  return {
+    tasks: [
+      { name: 'task 1', dueDate: '27/04/2019', dueTime: '10:00' },
+      { name: 'task 2', dueDate: '27/04/2019', dueTime: '11:00' },
+      { name: 'task 3', dueDate: '27/04/2019', dueTime: '12:00' }
+  }
+},
+methods: {
+  deleteTask(index) {
+    this.tasks.splice(index, 1);
+  }
+}
+```
+
 #### script
 ```javascript
 export default {
@@ -195,6 +221,101 @@ directives: {
 }
 ```
 
+## Components
+Componets will be stored in src/components
+
+#### Import components
+1. Using import
+```html
+<script>
+  import Task from 'components/Task.vue'
+  export default {
+    components: {
+      'task': Task
+    }
+  }
+</script>
+```
+
+2. The shorten way
+```html
+<script>
+  export default {
+    components: {
+      'task': require('components/Task.vue').default
+    }
+  }
+</script>
+```
+
+#### Passing data to child component
+1. Props
+    - component
+    ```html
+    <template>
+      <li>
+        <div>{{ task.name }}</div>
+        <small>{{ task.dueDate }} @ {{ task.dueTime }}</small>
+        <button @click="deleteTask(index)">X</button>
+      </li>
+    </template>
+    <script>
+      export default {
+        props: ['task', 'index']
+      }
+    </script>
+    ```
+    - page
+    ```html
+    <ul>
+      <task v-for="(task, index) in tasks"
+            :task="task"
+            :index="index"
+      ></task>
+    </ul>
+    ```
+
+2. Slots
+Slot pass content from parent component to child component
+The &lt;slot&gt; tag will be replaced by the content between child component tag
+    - component
+    ```html
+    <template>
+      <li>
+        <div>{{ task.name }} <slot></slot></div>
+        <small>{{ task.dueDate }} @ {{ task.dueTime }}</small>
+        <button @click="deleteTask(index)">X</button>
+      </li>
+    </template>
+    <script>
+      export default {
+        props: ['task', 'index']
+      }
+    </script>
+    ```
+    - page
+    ```html
+    <ul>
+      <task v-for="(task, index) in tasks"
+            :task="task"
+            :index="index"
+      >This content will be replaced into slot tag</task>
+    </ul>
+    ```
+The result will be **task 1 This content will be replaced into slot tag**
+
+#### Keys
+When using v-for, items should be contain their key (id) to help vue to track items
+```html
+<ul>
+  <task v-for="(task, index) in tasks"
+        :key="task.id"
+        :task="task"
+        :index="index"
+  ></task>
+</ul>
+```
+
 ## Lifecycle hook
 #### create component
 ![Vue.js lifecycle hook](img/vuejslifecycle.png "Vue.js lifecycle hook")
@@ -273,3 +394,7 @@ mounted(): {
 
 #### src/components
 - where vue components will be stored
+
+## Routes And Pages
+- Pages will be stored in src/pages
+- Routes will be configured in src/router/routes.js
