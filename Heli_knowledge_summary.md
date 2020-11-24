@@ -344,11 +344,25 @@ gitlab-runner register
 cat /etc/gitlab-runner/config.toml
 ```
 
-## .Net Core
+## .Net Core (Install docker first to avoid error)
 #### install enviroment
 ```console
 sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 sudo yum install dotnet-sdk-3.1 -y
+```
+
+#### .gitlab-ci.yaml
+```javascript
+stages:
+  - build_master
+build_test:     
+  stage: build_master
+  tags: 
+    - dotnet  
+  script: 
+    - dotnet publish src/MvcDemo/MvcDemo.csproj -c Release -o  ./deploy/
+  only:
+    - master
 ```
 
 # Docker
