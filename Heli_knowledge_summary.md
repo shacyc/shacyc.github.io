@@ -344,6 +344,14 @@ gitlab-runner register
 cat /etc/gitlab-runner/config.toml
 ```
 
+#### permission
+Add per mission for gitlab-runner user
+```console
+groupadd docker
+usermod -aG docker gitlab-runner
+service docker restart
+```
+
 ## .Net Core (Install docker first to avoid error)
 #### install enviroment
 ```console
@@ -352,7 +360,7 @@ sudo yum install dotnet-sdk-3.1 -y
 ```
 
 #### .gitlab-ci.yaml
-```javascript
+```console
 stages:
   - build_master
 build_test:     
@@ -369,4 +377,147 @@ build_test:
 ## Installation
 ```console
 yum install docker
+systemctl enable docker
+```
+
+## Commmon commands
+
+#### Help
+> docker [command] --help
+```console
+docker image --help
+docker image save --help
+```
+
+#### Images
+List all images
+```console
+docker images
+```
+
+Search images from [docker hub](https://hub.docker.com)
+> docker search [keyword]
+```console
+docker search ubuntu
+```
+
+Pull image
+> docker pull [image name]:[tag]
+```console
+docker pull busybox:latest
+```
+
+Remove image
+Remove by name
+> docker rm [image name]:[tag]
+
+Remove by Id  
+> docker rm [image's id some first letters]
+
+```console
+docker rm busybox:latest
+```
+
+Run image  
+> docker run [-it] [--name "ContainerName"] [-h hostname] [image]
+- -it (-i -t): after container is created, terminal it
+- --name "ContainerName": named container
+- -h hostname: set container host name
+- image: image name or id
+
+```console
+docker run -it busybox:lastest
+```
+
+Remove image
+> docker image rm [image's id or image's name]
+```console
+docker image rm busybox:lastest
+```
+
+#### Container
+List all running containers
+```console
+docker ps
+```
+
+List all containers (include stopped container)
+```console
+docker ps -a
+```
+
+Start container
+> docker start [container's id or container's name]
+```console
+docker start container_name
+```
+
+Start container
+> docker stop [container's id or container's name]
+```console
+docker stop container_name
+```
+
+Attach to a running container
+> docker attach [container's id or container's name]
+```console
+docker attach container_name
+```
+
+Exit attaching
+- exit: run command exit makes container stop
+- Ctrl + P + Q: container won't be stopped
+
+Remove container
+> docker rm [-f] [container's id or container's name]
+- -f: force remove, use when container's running
+```console
+docker rm container_name
+```
+
+Execute command
+> docker exec [container's id or container's name] [command]
+```console
+docker exec container_name ls
+```
+
+#### Commit and load image
+
+Commit container to image
+> docker commit [container's id or container's name] [image name]:[tag]
+```console
+docker commit container_name busybox_custom:1.0
+```
+
+Save image to file
+> docker save --output [file name] [image's id or image's name]
+```console
+docker save --output export_image.tar.gz busybox_custom:1.0
+```
+
+Load image from file
+> docker load -i [file name]  
+> docker tag [image's id or image's name] [image name]:[version]
+```console
+docker load -i export_image.tar.gz
+docker tag import_image busybox_custom:2.0
+```
+
+#### Advance command
+
+Remove all unused images ( to reduce storage for docker vm )
+```console
+docker system prune -af
+```
+
+## Registry
+#### Install
+```console
+sudo yum install docker-distribution -y
+```
+
+#### Run
+```console
+service firewalld stop
+service docker-distribution start
 ```
