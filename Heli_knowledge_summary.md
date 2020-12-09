@@ -510,6 +510,96 @@ Remove all unused images ( to reduce storage for docker vm )
 docker system prune -af
 ```
 
+## Docker volumn
+#### create volumn
+docker volumn
+> docker volumn create [volumn name]
+```console
+docker volumn create docker_volumn
+```
+
+volumn mounted to host computer
+> docker volumn create --opt device=[path to folder] --opt type=none --opt o=bind [volumn name]
+```console
+docker volumn create --opt device=/home/shared --opt type=none --opt o=bind shared_volumn
+```
+
+#### check volumn info
+> docker volumn inspect [volumn name]
+```console
+docker volumn inspect shared_volumn
+```
+
+#### mount volumn on run container
+docker volumn
+> 
+```console
+docker run --name U1 --mount source=docker_volumn,target=/home/mounted_disk shared_volumn ubuntu:lastest
+```
+
+volumn in host computer
+> docker run --name [container name]  -v [volumn name]:[mounted directory] [image name]:[tag]
+```console
+docker run --name U1 -v shared_volumn:/home/mounted_disk ubuntu:lastest
+```
+
+
+#### remove volumn
+> docker volumn rm [volumn name]
+```console
+docker volumn rm volumn_name
+```
+
+#### list all volum
+```console
+docker volumn ls
+```
+
+## Docker network
+
+#### show all network
+```console
+docker network ls
+```
+- bridge: all container will be connected to this network
+
+#### inspect network
+> docker network inspect [network name]
+```console
+docker network inspect bridge
+```
+
+#### create container with export port
+> docker run --name [container's name] -p [port outside]:[port inside] [image's name]
+```console
+docker run --name container_name -p 8888:80 busybox
+```
+
+#### create bridge network
+> docker network create --driver bridge [network's name]
+```console
+docker network create --driver bridge own_network
+```
+
+#### remove network
+> docker network rm [network's name]
+```console
+docker network rm own_network
+```
+
+#### create container with created network
+> docker run --name [container's name] --network [network's name] [image's name]
+```console
+docker run --name container_name --network own_network busybox
+```
+
+#### connect container to a network
+> docker network connect [network's name] [container's name]
+```console
+docker network connect container_name own_network
+```
+
+
 ## Registry
 #### Install
 ```console
