@@ -409,13 +409,13 @@ docker pull busybox:latest
 
 Remove image
 Remove by name
-> docker rm [image name]:[tag]
+> docker image rm [image name]:[tag]
 
 Remove by Id  
-> docker rm [image's id some first letters]
+> docker image rm [image's id some first letters]
 
 ```console
-docker rm busybox:latest
+docker image rm busybox:latest
 ```
 
 Run image  
