@@ -14,9 +14,14 @@ apt-get install gnome-tweak-tool
   - Minimize
 
 ## Applications
+- Pop!_Shop
+  - VLC
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
+
 - [Ulauncher](https://ulauncher.io/)
 
-- VMWare
+- [VMWare](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html)
   - Download .bundle from wmware website
   - Execute
 ```console
