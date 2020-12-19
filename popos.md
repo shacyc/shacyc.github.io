@@ -14,6 +14,7 @@ apt-get install gnome-tweak-tool
   - Minimize
 
 ## Applications
+- [Ulauncher](https://ulauncher.io/)
 
 - VMWare
   - Download .bundle from wmware website
