@@ -22,7 +22,7 @@ atp install default-jdk
 - Pop!_Shop
   - VLC
 
-- ibus-teni
+- [ibus-teni](https://github.com/teni-ime/ibus-teni)
 ```console
 add-apt-repository ppa:teni-ime/ibus-teni
 apt-get update
