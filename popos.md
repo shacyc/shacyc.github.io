@@ -4,6 +4,11 @@
 apt-get install gnome-tweak-tool
 ```
 
+- Install java
+```console
+atp install default-jdk
+```
+
 ## Settings
 
 - Settings > Accessibility > Large Text
@@ -20,6 +25,18 @@ apt-get install gnome-tweak-tool
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
 - [Ulauncher](https://ulauncher.io/)
+
+- Xtreme Download Manager
+
+  - Download [XDMan](http://xdman.sourceforge.net/#downloads)
+  - Run script
+```console
+mkrid xdm
+mv xdm-setup-7.2.11.tar.xz xdm
+cd xdm
+tar xvf xdm-setup-7.2.11.tar.xz
+./install.sh
+```
 
 - [VMWare](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html)
   - Download .bundle from wmware website
