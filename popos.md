@@ -22,6 +22,14 @@ atp install default-jdk
 - Pop!_Shop
   - VLC
 
+- ibus-teni
+```console
+add-apt-repository ppa:teni-ime/ibus-teni
+apt-get update
+apt-get install ibus-teni
+usermod -a -G input $USER
+```
+
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
 - [Ulauncher](https://ulauncher.io/)
