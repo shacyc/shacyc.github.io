@@ -220,6 +220,7 @@ firewall-cmd --reload
 When using nginx, we have to disable SELinux
 ```console
 setenforce 0
+sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
 ```
 ###### start
 ```console
@@ -294,7 +295,7 @@ sudo systemctl start postfix
 
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-sudo EXTERNAL_URL="http://gitlab.localdomain" yum install -y gitlab-ee
+sudo EXTERNAL_URL="http://gitlab.local" yum install -y gitlab-ee
 ```
 
 ## Struct
@@ -611,3 +612,53 @@ sudo yum install docker-distribution -y
 service firewalld stop
 service docker-distribution start
 ```
+
+# Kubenetes + Rancher
+
+## Download
+- https://github.com/rancher/rke/releases/tag/v1.0.14
+- Download rke_linux-amd64 via wget
+
+```console
+wget https://github.com/rancher/rke/releases/download/v1.0.14/rke_linux-amd64
+mv rke_linux-amd64 rke
+chmod +x rke
+cp rke /usr/local/bin
+```
+
+- rename for easier call
+- chmod: allow rke to execute
+- cp: copy to use rke as command
+
+
+## Setup
+- https://rancher.com/docs/rancher/v2.x/en/installation/resources/k8s-tutorials/ha-rke/
+
+#### create user
+```console
+adduser urancher
+passwd urancher
+```
+
+#### disable firewall
+```console
+service firewalld stop
+```
+
+#### install rancher into docker
+```console
+sudo docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/rancher:/var/lib/rancher rancher/rancher:v2.4.8
+```
+- go to: https://192.168.25.135:9443/
+- set root password
+- default user name: admin
+
+#### add cluster
+- https://192.168.25.133:9443/g/clusters
+- Add cluster -> From existings node
+- named cluster
+- next
+- if this is master node, check etcd, control plane
+- if this is woker, check worker
+- copy command at step 2 and run it from terminal. This command will create container from kubenetes image
+- back to web page -> go to nodes
