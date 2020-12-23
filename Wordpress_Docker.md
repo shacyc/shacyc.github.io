@@ -75,3 +75,27 @@ docker run -d --name c-httpd -h httpd --network www-net -p 9999:80 -p 443:443 -v
 ```
 
 # Install mysql
+
+## pull image
+```console
+docker pull mysql
+```
+- port: 3304
+- config: /etc/mysql/my.cnf
+- username: root
+- database: /var/lib/mysql
+- enviroment variable
+    - password: MYSQL_ROOT_PASSWORD
+
+## run and get config
+```console
+docker run --rm -v /home/storage/Shared/mycode:/home/mycode mysql cp /etc/mysql/my.cnf /home/mycode
+```
+
+## config
+- edit file my.cnf
+    - add to last: *default-authentication-plugin=mysql_native_password*
+- create folder db on mycode to stored db
+
+## create container
+docker run -e MYSQL_ROOT_PASSWORD=1234@Bcd -v /home/storage/Shared/mycode/my.cnf:/etc/mysql/my.cnf -v /home/storage/Shared/mycode/db/:/var/lib/mysql --name c-mysql mysql
