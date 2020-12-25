@@ -22,6 +22,7 @@ atp install default-jdk
 - Pop!_Shop
   - VLC
   - Tilix
+    - Set default terminal: **update-alternatives --config x-terminal-emulator**
 
 - [ibus-teni](https://github.com/teni-ime/ibus-teni)
 ```console
@@ -63,3 +64,5 @@ chmod +x VMware-Workstation-Full-16.1.0-17198959.x86_64.bundle
 ```console
 apt install neofetch
 ```
+
+- [Balena Etcher](https://www.balena.io/etcher/)
