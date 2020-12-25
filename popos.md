@@ -21,6 +21,7 @@ atp install default-jdk
 ## Applications
 - Pop!_Shop
   - VLC
+  - Tilix
 
 - [ibus-teni](https://github.com/teni-ime/ibus-teni)
 ```console
@@ -57,3 +58,8 @@ chmod +x VMware-Workstation-Full-16.1.0-17198959.x86_64.bundle
 ./VMware-Workstation-Full-16.1.0-17198959.x86_64.bundle
 ```
 > VMWare 16 key: ZF71R-DMX85-08DQY-8YMNC-PPHV8
+
+- [Neofetch](https://github.com/dylanaraps/neofetch)
+```console
+apt install neofetch
+```
