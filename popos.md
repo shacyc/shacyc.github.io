@@ -22,7 +22,7 @@ atp install default-jdk
 - Pop!_Shop
   - VLC
   - Tilix
-    - Set default terminal: **update-alternatives --config x-terminal-emulator**
+    - Set default terminal: *update-alternatives --config x-terminal-emulator*
 
 - [ibus-teni](https://github.com/teni-ime/ibus-teni)
 ```console
