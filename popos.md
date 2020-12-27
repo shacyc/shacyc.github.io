@@ -17,6 +17,12 @@ atp install default-jdk
 - Tweaks > Window Titlebars > Titlebar Buttons
   - Maximize
   - Minimize
+- Settings > Keyboard > Customize shortcut
+  - Launcher > Home Folder > Super + E
+  - Launcher > Launch Email Client > Disable
+  - Navigate applications and windows > Launch and switch applications: Super + S
+  - Navigation > Hide all normal windows > Super + D
+  - 
 
 ## Applications
 - Pop!_Shop
@@ -34,7 +40,7 @@ usermod -a -G input $USER
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-- [Ulauncher](https://ulauncher.io/)
+- [Ulauncher](https://ulauncher.io/) or using Super + / for replacement
 
 - Xtreme Download Manager
 
