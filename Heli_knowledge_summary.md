@@ -620,7 +620,7 @@ service docker-distribution start
 - Download rke_linux-amd64 via wget
 
 ```console
-wget https://github.com/rancher/rke/releases/download/v1.0.14/rke_linux-amd64
+wget https://github.com/rancher/rke/releases/download/v1.2.4/rke_linux-amd64
 mv rke_linux-amd64 rke
 chmod +x rke
 cp rke /usr/local/bin
@@ -672,3 +672,15 @@ setenforce 0
 sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
 service firewall stop
 ```
+- Clone 2 more VM
+
+- Cluster 1
+  - Download rke
+  ```console
+  ```console
+wget https://github.com/rancher/rke/releases/download/v1.2.4/rke_linux-amd64
+mv rke_linux-amd64 rke
+chmod +x rke
+cp rke /usr/bin
+```
+  ```
