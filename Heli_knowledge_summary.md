@@ -676,11 +676,28 @@ service firewall stop
 
 - Cluster 1
   - Download rke
-  ```console
-  ```console
+```console
 wget https://github.com/rancher/rke/releases/download/v1.2.4/rke_linux-amd64
 mv rke_linux-amd64 rke
 chmod +x rke
 cp rke /usr/bin
 ```
-  ```
+
+- 3 Cluster
+  - Add user k8s and switch to user k8s and **set password for cluster 2 and 3**
+```console
+useradd k8s
+su - k8s
+passwd k8s
+```
+  - Add SSH Key to make 3 cluster can connect to other (enter to the end)
+```console
+ssh-keygen
+```
+
+- Cluster 1
+  - copy ssh key from cluster 2 and 3
+```console
+ssh-copy-id k8s@[ip cluster 2]
+ssh-copy-id k8s@[ip cluster 3]
+```
