@@ -670,7 +670,7 @@ sudo docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/ranch
 ```console
 setenforce 0
 sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
-service firewall stop
+service firewalld stop
 ```
 - Clone 2 more VM
 
@@ -690,14 +690,61 @@ useradd k8s
 su - k8s
 passwd k8s
 ```
+  - Add user k8s to group docker
+```console
+su
+sudo usermod -aG docker k8s
+```
+
   - Add SSH Key to make 3 cluster can connect to other (enter to the end)
 ```console
 ssh-keygen
 ```
 
 - Cluster 1
-  - copy ssh key from cluster 2 and 3
+  - copy ssh key from 3 cluster (using user k8s)
 ```console
+ssh-copy-id k8s@[ip cluster 1]
 ssh-copy-id k8s@[ip cluster 2]
 ssh-copy-id k8s@[ip cluster 3]
+```
+
+  - [create file](https://rancher.com/docs/rancher/v2.x/en/installation/resources/k8s-tutorials/ha-rke/)
+```console
+cd /home/k8s
+vi cluster.yml
+```
+    - file content
+```console
+nodes:
+  - address: 192.168.25.138
+    internal_address: 192.168.25.138
+    user: k8s
+    role: [controlplane, worker, etcd]
+  - address: 192.168.25.139
+    internal_address: 192.168.25.139
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+  - address: 192.168.25.140
+    internal_address: 192.168.25.140
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+# Required for external TLS termination with
+# ingress-nginx v0.22+
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: "true"
+```
+
+  - run rke
+```console
+rke up cluster.yml
 ```
