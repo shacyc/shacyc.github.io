@@ -662,3 +662,13 @@ sudo docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/ranch
 - if this is woker, check worker
 - copy command at step 2 and run it from terminal. This command will create container from kubenetes image
 - back to web page -> go to nodes
+
+# Cluster
+## Installation
+- [Install docker](https://docs.docker.com/engine/install/centos/)
+- Set enforce, firewall
+```console
+setenforce 0
+sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
+service firewall stop
+```
