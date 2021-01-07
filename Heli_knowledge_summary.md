@@ -750,3 +750,17 @@ ingress:
 rke up cluster.yml
 ```
 - [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+```console
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+su
+mv ./kubectl /usr/bin/
+su - k8s
+kubectl version --client
+export KUBECONFIG=$(pwd)/kube_config_cluster.yml
+```
+
+- Install rancher
+``` console
+docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/docker_rancher:/var/lib/rancher rancher/rancher:v2.4.8
+```
