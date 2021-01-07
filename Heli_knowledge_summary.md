@@ -764,3 +764,10 @@ export KUBECONFIG=$(pwd)/kube_config_cluster.yml
 ``` console
 docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/docker_rancher:/var/lib/rancher rancher/rancher:v2.4.8
 ```
+  - go to https://192.168.25.138:9443/ > add cluster > import an existing cluster
+  - named cluster master > next
+  - run 2 last command on cluster 1
+```console
+kubectl apply -f https://192.168.25.138:9443/v3/import/vqd6m5vznv8mxmw28mttwn2dblqwlmkwhpf8d9tvmgfscc5n22qrhq.yaml
+curl --insecure -sfL https://192.168.25.138:9443/v3/import/vqd6m5vznv8mxmw28mttwn2dblqwlmkwhpf8d9tvmgfscc5n22qrhq.yaml | kubectl apply -f -
+```
