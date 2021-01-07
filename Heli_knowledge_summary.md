@@ -687,7 +687,6 @@ cp rke /usr/bin
   - Add user k8s and switch to user k8s and **set password for cluster 2 and 3**
 ```console
 useradd k8s
-su - k8s
 passwd k8s
 ```
   - Add user k8s to group docker
@@ -698,12 +697,14 @@ sudo usermod -aG docker k8s
 
   - Add SSH Key to make 3 cluster can connect to other (enter to the end)
 ```console
+su - k8s
 ssh-keygen
 ```
 
 - Cluster 1
   - copy ssh key from 3 cluster (using user k8s)
 ```console
+su - k8s
 ssh-copy-id k8s@[ip cluster 1]
 ssh-copy-id k8s@[ip cluster 2]
 ssh-copy-id k8s@[ip cluster 3]
@@ -748,3 +749,4 @@ ingress:
 ```console
 rke up cluster.yml
 ```
+- [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
