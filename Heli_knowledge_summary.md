@@ -635,7 +635,9 @@ service docker-distribution start
 
 # Kubenetes + Rancher
 
-## Download
+## Download RKE
+> Rancher Kubernetes Engine (RKE) is a CNCF-certified Kubernetes distribution that runs entirely within Docker containers. It works on bare-metal and virtualized servers. With RKE, the installation and operation of Kubernetes is both simplified and easily automated, and it’s entirely independent of the operating system and platform you’re running.
+
 - https://github.com/rancher/rke/releases/tag/v1.0.14
 - Download rke_linux-amd64 via wget
 
@@ -682,6 +684,19 @@ sudo docker run -d --restart=unless-stopped -p 9080:80 -p 9443:443 -v /opt/ranch
 - if this is woker, check worker
 - copy command at step 2 and run it from terminal. This command will create container from kubenetes image
 - back to web page -> go to nodes
+
+#### add project
+- https://192.168.25.135:9443/c/c-zpmhd/projects-namespaces
+- Add project
+    - Workloads = container
+    - Load balancing
+    - Service discovery: like haproxy, run with condition
+
+#### workload
+- deploy
+    - node port: pod container create an ip
+    - host port: from 30000 -> 56000 
+    - cluster: creat ip vip
 
 # Cluster
 ## Installation
